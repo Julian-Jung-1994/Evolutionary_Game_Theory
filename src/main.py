@@ -1,8 +1,4 @@
-import player
-import strategy
-import matching
-import replication
-import diagrams
+from src.modules import replication, matching, player, strategy, diagrams
 
 
 class Game:

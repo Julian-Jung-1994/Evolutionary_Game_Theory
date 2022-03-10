@@ -9,8 +9,3 @@
 - conda env update -f environment.yml --prune
 - conda env list
 - conda deactivate
-
-
-<br> <br>
-<b> further commands</b>
-- conda install -e .

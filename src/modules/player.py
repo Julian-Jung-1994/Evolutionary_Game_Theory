@@ -1,31 +1,26 @@
 import numpy as np
 
 
-def constant_binary_distribution(rates, size_population):
-    """
-    from rates and the size of population, a list with each entity included is created
+def constant_binary_distribution(types, rates, size_population):
 
-    Parameters
-    ----------
-    rates : list of floats - two entries
-        population rates as entries.
-    size_population : int
-        total size of population
-
-    Returns
-    -------
-    players : list of floats
-        list with each player represented
-    """
-
-    if sum(rates) != 1:
-        raise Exception('population rates do not add up to 1')
+    constant_binary_distribution_checks(types, rates, size_population)
 
     players = np.array([])
     for rate in enumerate(rates):
-        tmp = [rate[0]] * int(np.round(rate[1] * size_population))
+        tmp = [types[rate[0]]] * int(np.round(rate[1] * size_population))
         players = np.append(players, tmp)
 
     players = list(players)
 
     return players
+
+
+# TODO in its own script -> create sub-directory for each module
+def constant_binary_distribution_checks(types, rates, size_population):
+
+    # rate checks
+    rates_arr = np.array(rates)
+    if not 0 <= rates_arr.any() <= 1:
+        raise Exception('rates must be in range of [0, 1]')
+    elif rates_arr.sum() != 1:
+        raise Exception('population rates do not add up to 1')

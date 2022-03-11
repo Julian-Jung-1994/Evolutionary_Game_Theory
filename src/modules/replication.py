@@ -16,6 +16,6 @@ def hawk_dove(matches):
 
     rate_dove = replication_dove / (replication_dove + replication_hawk)
     rate_hawk = 1 - rate_dove
-    rates = [rate_dove, rate_hawk]
+    replications = [rate_dove, rate_hawk]
 
-    return rates
+    return replications

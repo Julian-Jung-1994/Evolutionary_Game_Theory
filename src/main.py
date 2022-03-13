@@ -1,8 +1,9 @@
-from src.modules import replication, matching, player, strategy, diagrams
+from src.modules import player, strategy, matching, replication, mutation, diagrams
+import numpy as np
 
 
 def population_ratio(
-        game='hawk_dove', types=[0, 1], rates=[0.4, 0.6], match='random', mutation_rate=[0, 0],
+        game='hawk_dove', types=[0, 1], rates=[0.4, 0.6], match='random', mutation_rate=0.1,
         size_population=100, periods=100
 ):
     """
@@ -39,18 +40,19 @@ def population_ratio(
     population_rate = [[rates[0], rates[1]]]
 
     for t in range(periods - 1):
-        players = player.constant_binary_distribution(types, population_rate[-1], size_population)
+        players = player.player_distribution(types, population_rate[-1], size_population)
         strategies = strategy.identity_assignment(players)
         matches = matching.random_matching(strategies)
         replications = replication.hawk_dove(matches)
+        population = mutation.binary_uncorrelated(types, replications, size_population, mutation_rate)
 
-        population_rate.append(replications)
+        population_rate.append(population)
 
     return population_rate
 
 
 def population_diagram(
-        game='hawk_dove', types=[0, 1], rates=[0.4, 0.6], match='random', mutation_rate=[0, 0],
+        game='hawk_dove', types=[0, 1], rates=[0.4, 0.6], match='random', mutation_rate=0.1,
         size_population=100, periods=100
 ):
     population_rate = population_ratio(game, types, rates, match, mutation_rate, size_population, periods)

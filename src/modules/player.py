@@ -2,7 +2,7 @@ import numpy as np
 from src.checks import player as check
 
 
-def constant_binary_distribution(types, rates, size_population):
+def player_distribution(types, rates, size_population):
 
     check.constant_binary_distribution_checks(types, rates, size_population)
 

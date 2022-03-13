@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def constant_binary_distribution_checks(types, rates, size_population):
 
     # rate checks

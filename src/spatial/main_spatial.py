@@ -1,9 +1,11 @@
-from src.modules.module_spatial.player import player as pl
-from src.modules.module_spatial.grid import initial_grid as gr
+from src.spatial.player import player as pl
+from src.spatial.grid import initial_grid as gr
+from src.spatial.diagram import grid_diagram as dia
 
 
 def spatial(types=[1, 2], rates=[0.5, 0.5], size_population=10,
-            rows=10, columns=10):
+            rows=10, columns=10,
+            institutions=[[[1, 3], [2, 6]]]):
 
     # collection lists
     players = []
@@ -17,5 +19,7 @@ def spatial(types=[1, 2], rates=[0.5, 0.5], size_population=10,
     players.append(players_init)
     grid.append(grid_distribution_init[0])
     distribution.append(grid_distribution_init[1])
+
+    dia.institution_grid(grid[0], institutions)
 
     return players, grid, distribution

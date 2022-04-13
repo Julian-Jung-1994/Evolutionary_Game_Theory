@@ -1,4 +1,4 @@
-from src.modules import player, strategy, matching, replication, mutation, diagrams
+from src.evolution import player, strategy, matching, replication, mutation, diagrams
 import numpy as np
 
 
